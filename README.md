@@ -143,14 +143,21 @@ http://playground.arduino.cc/ComponentLib/servo
 <img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/ImgTeclado.jpg" width="400" height="400">
 
 ## Imagenes del proyecto
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG1.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG2.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG3.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG4.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG5.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG6.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG7.jpg" width="400" height="400">
-<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG8.jpg" width="400" height="400">
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG1.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG2.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG3.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG4.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG5.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG6.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG7.JPG" width="400" height="400">
+
+<img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/IMG8.JPG" width="400" height="400">
 
 
 
