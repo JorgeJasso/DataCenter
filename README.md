@@ -1,8 +1,9 @@
 # Data Center
 ## Presentación 
 <img src="https://github.com/JorgeJasso/DataCenter/blob/master/Imagenes/Presentacion.jpg">
+
 ## Introducción
-> El siguiente proyecto consiste en un sistema de control de seguridad para un Data Center, simulando las funciones de alarma, notificaciónes y cerrado automático de puertas. 
+El siguiente proyecto consiste en un sistema de control de seguridad para un Data Center, simulando las funciones de alarma, notificaciónes y cerrado automático de puertas. 
 El sistema de control cumple los siguientes requisitos:
 *  Incluye 3 sensores y un actuador.
 *  El sistema de control muestra estadísticas de los sensores y tomar acciones en consecuencia.
