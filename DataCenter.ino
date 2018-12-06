@@ -45,6 +45,7 @@ float luminosidad = 0; //Declara la variable que almacenara la luminosidad.
 int contAlarma = 0; //controla el numero de veces que se manda el mensaje de la alarma.
 int contLuminosidad = 0; //controla el numero de veces que se manda el mensaje de luminosidad.
 int contTemperatura = 0; //controla el numero de veces que se manda el mensaje de temperatura.
+int estadisticas = 0; //Indica cuando se muestran las estadisticas.
 
 
 //----------CONSTANTES Y VARIABLES PARA LOS SERVOMOTORES.
@@ -52,6 +53,13 @@ const int PIN_SERVO = 13; //Indica el pin que usará la pinza.
 const int TIEMPO = 200; // definimos el tiempo entre pasos del servo (velocidad).
 boolean estadoPuerta = true; //Sirve para ver si la puerta esta abierta o cerrada.
 Servo servo; // Definimos el servo que utilizaremos.
+
+
+//----------VARIABLES PARA EL FOCO Y SWITCH
+const int APAGADOR = 8; //Indica que pin se utilizara para el apagador.
+const int FOCO = 9; //Indica que pin se utilizará para el foco.
+int contApagador = 0;//Para verificar si se ha pulsado el boton.
+boolean estadoApagador = true; //Almacena el estado del apagador, es decir si ha sido pulsado o no.
 
 
 //-------------------------------------------------------------------SETUP
@@ -64,6 +72,8 @@ void setup() {
   pinMode(LDR_pin, INPUT); //Establece que el LDR sera de entrada.
   servo.attach(PIN_SERVO);//Se indica el pin que utiliza el servo.
   servo.write(0); //Lleva el servo a su posicion inicial.
+  pinMode (FOCO, OUTPUT);
+  pinMode (APAGADOR, INPUT);
 }
 
 
@@ -81,8 +91,8 @@ void loop() {
         Serial.println("Bienvenido");
         estadoAlarma = LOW; //Desactiva la alarma para poder ingresar a la casa.
         if (!estadoPuerta) { //Si la puerta esta cerrada
-          estadoPuerta = true; //Indica que se abrio la puerta 
-          for (int i = 180; i >= 0; i = i - 10) {//For para ir moviendo el servo por pasos.
+          estadoPuerta = true; //Indica que se abrio la puerta
+          for (int i = 90; i >= 0; i = i - 10) {//For para ir moviendo el servo por pasos.
             servo.write(i); //Mueve el servo a la posicion i.
             delay(TIEMPO);//Espera el tiempo especificado.
           }
@@ -99,10 +109,10 @@ void loop() {
   if (digitalRead(REDSWITCH) == HIGH) { //Comprueba si el iman se ha alejado del red switch.
     if (estadoAlarma == HIGH) { //Si se alejo y la alarma estaba activada entonces tiene que sonar.
       if (contAlarma == 0) {
-        Serial.println("ATENCIÓN: LA ALARMA FUE ACTIVADA"); //Imprime que la alarma esta encendida.
+        Serial.println("ATENCION: LA ALARMA FUE ACTIVADA"); //Imprime que la alarma esta encendida.
         if (estadoPuerta) { //Solo si la puerta esta abierta la cierra
           estadoPuerta = false;
-          for (int i = (-10); i < 180; i = i + 10) { //Va moviendose entre el servo para cerrar la puerta.
+          for (int i = (-10); i < 90; i = i + 10) { //Va moviendose entre el servo para cerrar la puerta.
             servo.write(i); //Mueve el servo en la posicion i.
             delay(TIEMPO);
           }
@@ -125,13 +135,13 @@ void loop() {
   }
   if (luminosidad > 15 && digitalRead(REDSWITCH) == LOW) { //Solo entre si el foco esta prendido y la puerta cerrada.
     if (contLuminosidad == 0) {
-      Serial.println("ATENCIÓN: LA LUCES ESTAN ENCENDIDAS");//Manda la alerta.
+      Serial.println("ATENCION: LA LUCES ESTAN ENCENDIDAS");//Manda la alerta.
       contLuminosidad = 1;//Indica que ya se mando la alerta.
     }
   } else {
     contLuminosidad = 0;//Indica que ya se puede mandar otro mensaje en dado caso de que el foco este prendido.
   }
-  if (temperatura > 21) { //Si la tempratura es mayor a 21 grados entra
+  if (temperatura > 24) { //Si la tempratura es mayor a 21 grados entra
     if (contTemperatura == 0) {
       Serial.println("ATENCION: LA TEMPERATURA DE LOS SERVIDORES ES MUY ALTA"); //Manda la alerta.
       contTemperatura = 1;//Señana que la alerta de temperatura ya se mando.
@@ -139,5 +149,22 @@ void loop() {
   } else {
     contTemperatura = 0;//Indica que ya se puede mandar otra alerta.
   }
+  while (digitalRead(APAGADOR) == LOW) { //Se repetira siempre y cuando el bóton este pulsado
+    contApagador = 1; //Indica que el apagador ha sido presionado
+  }
+  if (contApagador == 1) { //Verifica si el apagador fue presionado.
+    contApagador = 0;
+    if (estadoApagador) {
+      estadoApagador = false;
+      digitalWrite(FOCO, HIGH); //Enciende el led.
+    } else {
+      estadoApagador = true;
+      digitalWrite(FOCO, LOW); //Enciende el led.
+    }
+  }
+  estadisticas++;
+  if (estadisticas == 10000) {
+    estadisticas = 0;
+    Serial.println(String("Temperatura: ") + temperatura + String("C Luminosidad: ") + luminosidad); //Imprime la temperatura y luminosidad.
+  }
 }
-
